@@ -1807,19 +1807,20 @@ namespace PlayEveryWare.EpicOnlineServices
         }
 
 #if !EOS_DISABLE
-        //-------------------------------------------------------------------------
-        /// <summary>Unity [Awake](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html) is called when script instance is being loaded.
-        /// <list type="bullet">
-        ///     <item><description>Calls <c>Init()</c></description></item>
-        /// </list>
-        /// </summary>
-        void Awake()
+		//-------------------------------------------------------------------------
+		/// <summary>Unity [Awake](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html) is called 
+		/// on the frame when a script is enabled just before any of the Update methods are called the first time.
+		/// <list type="bullet">
+		///     <item><description>Calls <c>Init()</c></description></item>
+		/// </list>
+		/// </summary>
+		void Start()
         {
             // If there's already been an EOSManager,
             // disable this behaviour so that it doesn't fire Unity messages
             if (s_EOSManagerInstance != null)
             {
-                EOSSingleton.print($"{nameof(EOSManager)} {(nameof(Awake))}: An EOSManager instance already exists and is running, so this behaviour is marking as inactive to not perform duplicate work.");
+                EOSSingleton.print($"{nameof(EOSManager)} {(nameof(Start))}: An EOSManager instance already exists and is running, so this behaviour is marking as inactive to not perform duplicate work.");
                 enabled = false;
                 return;
             }
